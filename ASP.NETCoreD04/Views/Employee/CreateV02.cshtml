@@ -1,0 +1,109 @@
+﻿@model EmployeeCreateVM
+
+<div class="d-flex justify-content-center">
+    <h1 class="text-success">Create Employee</h1>
+</div>
+
+<br />
+<hr />
+<br />
+
+<form asp-controller="Employee" asp-action="CreateV02" method="post">
+     <div asp-validation-summary="All" class="text-danger"></div> 
+    <div class="mb-3 form-group">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Age" class="form-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Salary" class="form-label"></label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Address" class="form-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="DOB" class="form-label"></label>
+        <input asp-for="DOB" class="form-control" />
+        <span asp-validation-for="DOB" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-group">
+        <label asp-for="DepartmentId" class="form-label"></label>
+        <select asp-for="DepartmentId" class="form-select" asp-items="Model.Departments" required>
+        </select>
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3">
+        <input type="submit" class="btn btn-success" value="Create Employee" />
+        <a asp-action="Index" asp-controller="Employee" class="btn btn-secondary">Cancel</a>
+    </div>
+
+</form>
+
+
+
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $.validator.addMethod("minage", function (value, element, minAge) {
+
+            if (!value) return true;
+
+            var parts = value.split("-");
+            var dob = new Date(parts[0], parts[1] - 1, parts[2]);
+
+            var today = new Date();
+            var age = today.getFullYear() - dob.getFullYear();
+
+            var m = today.getMonth() - dob.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            return age >= minAge;
+        });
+
+        $.validator.unobtrusive.adapters.addSingleVal("minage", "age");
+    </script>
+}
+
+@*     @section Scripts
+    {
+    @Html.RenderPartialAsync("_ValidationScriptsPartial");
+} *@
