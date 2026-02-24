@@ -6,7 +6,7 @@ This project demonstrates **ASP.NET Core MVC CRUD operations** for Employees and
 
 - ✅ Entity Framework Core
 - ✅ ViewModels (VM)
-- ✅Custom Validation Attributes
+- ✅ Custom Validation Attributes
 - ✅ Server & Client Side Validation
 - ✅ Bootstrap Modals for Delete Confirmation
 - ✅ Data Mapping between Domain Models & ViewModels
