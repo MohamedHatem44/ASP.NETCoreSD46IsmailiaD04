@@ -239,7 +239,9 @@ private List<SelectListItem> GetDepartmentsForDropDown()
 - ViewModels & form binding
 - Bootstrap & jQuery integration
 
-- # 👨‍💻 Author
+---
+
+# 👨‍💻 Author
 
 Mohamed Hatem  
 Software Engineer
